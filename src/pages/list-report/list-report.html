@@ -1,0 +1,159 @@
+<ion-header>
+  
+  <ion-navbar>    
+      <ion-title>{{ 'Reports' | translate }}</ion-title>
+  
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addItem()">
+          <ion-icon name="add" color="secondary"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="search()">
+            <ion-icon name="search" color="secondary"></ion-icon>
+          </button>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  <ion-content>
+      <div padding >
+        <ion-segment color="secondary" [(ngModel)]="reports">
+          <ion-segment-button value="All">
+            All
+          </ion-segment-button>
+          <ion-segment-button value="urgent">
+            Urgent
+          </ion-segment-button>
+          <ion-segment-button value="closed">
+            Closed
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="reports">
+        <ion-list *ngSwitchCase="'All'">
+        
+  <ion-card  *ngFor="let f of currentFoundReports">
+    
+          <img src="http://192.168.1.4:18080/seahawks-web/{{f.profilePic}}">
+         
+    <ion-card-content style="padding:0px 0px;">
+        <ion-row style="background-color:#009688;padding-left:10px;padding-right:0px;">
+            
+            <ion-row style="padding-bottom:0px; padding-right:0px;display:flex;justify-content:space-between;width:100%;">
+                <img src="http://192.168.1.4:18080/seahawks-web/Assets/country/{{f.localisation.country}}.png" style="flex:10;width:30px;height:40px; padding-top:6px; padding-bottom:1px;" >                              
+                
+              <h4 style=" color:white;margin-left:0%;flex:70;" padding >
+                {{f.title}}
+              </h4>
+              <p padding align="right" style="flex:20;padding-right:5px; font-size:70%; color:white;left:0"  > 
+                {{f.date | timeAgo}}
+              </p>
+            </ion-row>
+           
+        </ion-row>
+      </ion-card-content>
+      <ion-row>
+        {{f.descrition}}
+      </ion-row>
+          <ion-row >
+            <ion-col>
+              <button ion-button color="secondary" clear small icon-start>
+                  <ion-icon name='thumbs-up'></ion-icon>
+                  12 reviews
+                </button>
+            </ion-col>
+            
+            <ion-col text-right>
+                <button ion-button color="secondary" clear small icon-start>
+                    <ion-icon name='at'></ion-icon>
+                    {{f.reporterUser.login}}
+                  </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+          ...
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'closed'">
+          <ion-card  *ngFor="let fc of currentFoundReportsclosed">
+            
+                  <img src="http://192.168.1.4:18080/seahawks-web/{{fc.profilePic}}">
+                 
+                  <ion-card-content style="padding:0px 0px;">
+                      <ion-row style="background-color:#2ecc71;padding-left:10px;padding-right:0px;">
+                          
+                          <ion-row style="padding-bottom:0px; padding-right:0px;display:flex;justify-content:space-between;width:100%;">
+                              <img src="http://192.168.1.4:18080/seahawks-web/Assets/country/{{f.localisation.country}}.png" style="flex:10;width:30px;height:40px; padding-top:6px; padding-bottom:1px;" >                              
+                              
+                            <h4 style=" color:white;margin-left:0%;flex:70;" padding >
+                              {{fc.title}}
+                            </h4>
+                            <p padding align="right" style="flex:20;padding-right:5px; font-size:70%; color:white;left:0"  > 
+                              {{fc.date | timeAgo}}
+                            </p>
+                          </ion-row>
+                         
+                      </ion-row>
+                    </ion-card-content>
+                  <ion-row >
+                    <ion-col>
+                      <button ion-button color="secondary" clear small icon-start>
+                          <ion-icon name='thumbs-up'></ion-icon>
+                          12 reviews
+                        </button>
+                    </ion-col>
+                    
+                    <ion-col text-right>
+                        <button ion-button color="secondary" clear small icon-start>
+                            <ion-icon name='at'></ion-icon>
+                            {{fc.reporterUser.login}}
+                          </button>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+          ...
+        </ion-list>
+        <ion-list *ngSwitchCase="'urgent'">
+          <ion-card  *ngFor="let fu of currentFoundReportsurgent">
+            
+                  <img style="max-height:360px!important;" src="http://192.168.1.4:18080/seahawks-web/{{fu.profilePic}}">
+                 
+                  <ion-card-content style="padding:0px 0px;">
+                      <ion-row style="background-color:#c0392b;padding-left:10px;padding-right:0px;">
+                          
+                          <ion-row style="padding-bottom:0px; padding-right:0px;display:flex;justify-content:space-between;width:100%;">
+                              <img src="http://192.168.1.4:18080/seahawks-web/assets/country/{{fu.localisation.country}}.png" style="flex:10;width:30px;height:40px; padding-top:6px; padding-bottom:1px;" >                              
+                              
+                            <h4 style=" color:white;margin-left:0%;flex:70;" padding >
+                              {{fu.title}}
+                            </h4>
+                            <p padding align="right" style="flex:20;padding-right:5px; font-size:70%; color:white;left:0"  > 
+                              {{fu.date | timeAgo}}
+                            </p>nt
+                          </ion-row>
+                         
+                      </ion-row>
+                    </ion-card-content>
+                  <ion-row >
+                    <ion-col>
+                      <button ion-button color="secondary" clear small icon-start>
+                          <ion-icon name='thumbs-up'></ion-icon>
+                          12 reviews
+                        </button>
+                    </ion-col>
+                    
+                    <ion-col text-right>
+                        <button ion-button color="secondary" clear small icon-start>
+                            <ion-icon name='at'></ion-icon>
+                            {{fu.reporterUser.login}}
+                          </button>
+                    </ion-col>
+                  </ion-row>
+                </ion-card>
+          ...
+        </ion-list>
+      </div>
+    </ion-content>
+    
+    
+    
